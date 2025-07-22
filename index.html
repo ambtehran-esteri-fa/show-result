@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document Viewer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo">
+    <h1>Governo Italiano</h1>
+  </header>
+
+  <main>
+    <iframe src="ITAIRN20256739651101.pdf" frameborder="0"></iframe>
+  </main>
+
+  <footer>
+    <a href="document.pdf" download class="download-btn">Download PDF</a>
+  </footer>
+<script>
+  window.addEventListener('scroll', function () {
+    const footer = document.querySelector('footer');
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
+      footer.style.opacity = '1';
+      footer.style.visibility = 'visible';
+    } else {
+      footer.style.opacity = '0';
+      footer.style.visibility = 'hidden';
+    }
+  });
+</script>
+
+</body>
+</html>
