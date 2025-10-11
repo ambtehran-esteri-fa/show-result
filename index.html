@@ -1,76 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Document Viewer</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure PDF Viewer</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo">
-    <h1>Governo Italiano</h1>
-  </header>
+<header>
+  <img src="logo.png" alt="Logo">
+  <h1>Governo Italiano</h1>
+</header>
 
-  <main>
-    <iframe id="pdf-frame" src="" frameborder="0"></iframe>
-  </main>
+<main>
+  <div class="file-selector">
+    <label for="pdf-select">Select a PDF:</label>
+    <select id="pdf-select">
+      <option value="CEUNO64511169_3L.pdf">CEUNO64511169_3L.pdf</option>
+      <option value="example2.pdf">Example2.pdf</option>
+      <option value="example3.pdf">Example3.pdf</option>
+    </select>
+  </div>
 
-  <footer>
-    <a href="#" id="download-btn" class="download-btn">Download PDF</a>
-  </footer>
+  <iframe id="pdf-frame" src="" frameborder="0"></iframe>
+</main>
 
-<script>
-  // رمز دانلود فایل
-  const correctPassword = "YourSecurePassword"; 
+<footer>
+  <button id="download-btn" class="download-btn">Download PDF</button>
+</footer>
 
-  // گرفتن نام فایل از URL
-  const params = new URLSearchParams(window.location.search);
-  const fileName = params.get('file'); // مثال: ?file=example.pdf
-
-  const pdfFrame = document.getElementById('pdf-frame');
-  const downloadBtn = document.getElementById('download-btn');
-
-  if(fileName){
-    // مسیر فایل PDF روی GitHub
-const fileURL = "https://raw.githubusercontent.com/ambtehran-esteri-fa/show-result/main/CEUNO64511169_3L.pdf";
-    pdfFrame.src = fileURL;
-
-    downloadBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const pwd = prompt("To download the file, please enter the password.\nFor your password, contact Visa Pro International Services: admin@visaprointernational.com");
-      if(pwd === correctPassword){
-        const link = document.createElement('a');
-        link.href = fileURL;
-        link.download = fileName;
-        link.click();
-      } else if(pwd !== null){
-        alert("Incorrect password. Please contact admin@visaprointernational.com for assistance.");
-      }
-    });
-
-  } else {
-    pdfFrame.remove();
-    downloadBtn.remove();
-    document.body.insertAdjacentHTML('beforeend', '<p style="text-align:center; margin-top:20px;">No file specified. Please provide a valid PDF file link.</p>');
-  }
-
-  // Footer visibility on scroll
-  window.addEventListener('scroll', function () {
-    const footer = document.querySelector('footer');
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
-      footer.style.opacity = '1';
-      footer.style.visibility = 'visible';
-    } else {
-      footer.style.opacity = '0';
-      footer.style.visibility = 'hidden';
-    }
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
