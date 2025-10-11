@@ -1,65 +1,25 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  background-color: #003366;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-header img {
-  height: 40px;
-}
-
-header h1 {
-  font-size: 1.4rem;
-}
-
-main {
-  flex: 1;
-  overflow: hidden;
-}
-
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-footer {
-  background-color: #003366;
-  padding: 10px;
-  text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-}
-
-.download-btn {
-  background-color: #ffffff;
-  color: #003366;
-  text-decoration: none;
-  padding: 8px 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.download-btn:hover {
-  background-color: #d9e6f2;
+:root{--bg:#f5f7fa;--card:#fff;--accent:#1f7bd4;--danger:#c0392b}
+*{box-sizing:border-box;font-family:Tahoma, "Helvetica Neue", Arial, sans-serif}
+body{margin:0;background:var(--bg);color:#111;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.container{width:100%;max-width:920px}
+header{margin-bottom:16px;text-align:center}
+.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(17,24,39,0.08)}
+form.card{max-width:420px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+label{display:flex;flex-direction:column;font-size:14px}
+input{padding:10px;border:1px solid #ddd;border-radius:6px;font-size:15px}
+button{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+button.small-btn{background:#eee;color:#111;padding:6px 10px;border-radius:6px}
+button.primary{background:var(--accent)}
+.hidden{display:none}
+.error{color:var(--danger);margin-top:6px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.actions{margin-bottom:12px}
+.pdf-wrapper{height:600px;border:1px solid #ddd;border-radius:6px;overflow:hidden}
+.pdf-wrapper iframe{width:100%;height:100%}
+.download-section{margin-top:8px;display:flex;gap:8px;align-items:center}
+.small{font-size:13px;color:#666}
+footer{text-align:center;margin-top:12px;color:#666}
+@media(max-width:600px){
+  .pdf-wrapper{height:400px}
+  form.card{padding:12px}
 }
