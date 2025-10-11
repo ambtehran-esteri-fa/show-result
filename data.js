@@ -24,7 +24,7 @@ const userData = [
     password: "411914534",
     ceuNumber: "CEU411914534",
     name: "MASHAL",
-    lastname: "SAIDY",
+    lastname: "SAID",
     nationality: "AFGHAN",
     passportNumber: "",
     nationalIDNumber: "00000",
