@@ -42,48 +42,50 @@
     </footer>
   </div>
 
+<body>
+
+  <!-- صفحه لودینگ -->
+  <div id="loading-screen">
+    <img src="loading.gif" alt="Loading..." class="loading-img">
+    <p>Loading, please wait...</p>
+  </div>
+
+  <!-- محتوای اصلی -->
+  <div id="main-content" style="display:none;">
+    <header>
+      <img src="logo.png" alt="Logo" class="logo">
+      <h1>Humanitarian Support Approval – Afghan Applicants</h1>
+    </header>
+
+    <main>
+      <iframe id="pdfViewer" src="CEUNO64511169_3L.pdf" frameborder="0"></iframe>
+
+      <div class="pdf-links">
+        <a href="#" data-pdf="CEUNO64511169_3L.pdf">File 1</a>
+        <a href="#" data-pdf="IT19753184.pdf">File 2</a>
+      </div>
+    </main>
+
+    <footer>
+      <button id="downloadBtn" class="download-btn">Download PDF</button>
+    </footer>
+  </div>
+
   <script>
-    // نمایش لودینگ برای 2 تا 4 ثانیه
+    // نمایش لودینگ برای 2 تا 4 ثانیه در وسط صفحه
     window.addEventListener("load", () => {
       const loadingScreen = document.getElementById("loading-screen");
       const mainContent = document.getElementById("main-content");
 
-      const delay = Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;
+      const delay = Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000; // 2 تا 4 ثانیه
       setTimeout(() => {
-        loadingScreen.style.display = "none";
-        mainContent.style.display = "block";
+        loadingScreen.style.display = "none"; // پنهان کردن لودینگ
+        mainContent.style.display = "block";  // نمایش محتوای اصلی
       }, delay);
-    });
-
-    // تغییر فایل PDF بر اساس لینک
-    const links = document.querySelectorAll('.pdf-links a');
-    const iframe = document.getElementById('pdfViewer');
-    let currentPDF = "CEUNO64511169_3L.pdf";
-
-    links.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        currentPDF = this.getAttribute('data-pdf');
-        iframe.src = currentPDF;
-      });
-    });
-
-    // سیستم رمز برای دانلود
-    document.getElementById('downloadBtn').addEventListener('click', function() {
-      const password = prompt("Enter the download password:");
-      const correctPassword = "AFG2025"; // ← رمز عبور مجاز را اینجا تعیین کنید
-
-      if (password === correctPassword) {
-        const a = document.createElement('a');
-        a.href = currentPDF;
-        a.download = currentPDF;
-        a.click();
-      } else if (password !== null) {
-        alert("❌ Incorrect password. Access denied.");
-      }
     });
   </script>
 </body>
-</html>
+
+
 
 
