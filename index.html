@@ -3,58 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Document Viewer</title>
+  <title>Humanitarian Support Approval – Afghan Applicants</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo">
-    <h1>Governo Italiano</h1>
-  </header>
 
-  <main>
-    <!-- iframe برای نمایش PDF -->
-    <iframe id="pdfViewer" src="CEUNO64511169_3L.pdf" frameborder="0"></iframe>
+  <!-- صفحه لودینگ -->
+  <div id="loading-screen">
+    <img src="loading.gif" alt="Loading..." class="loading-img">
+    <p>Please wait, loading documents...</p>
+  </div>
 
-    <!-- لیست لینک‌ها -->
-    <div class="pdf-links">
-      <a href="#" data-pdf="CEUNO64511169_3L.pdf">File 1</a>
-      <a href="#" data-pdf="IT19753184.pdf">File 2</a>
-      <a href="#" data-pdf="document3.pdf">File 3</a>
-      <a href="#" data-pdf="document4.pdf">File 4</a>
-      <a href="#" data-pdf="document5.pdf">File 5</a>
-      <!-- تا 20 فایل اضافه کنید -->
-    </div>
-  </main>
+  <!-- محتوای اصلی -->
+  <div id="main-content" style="display:none;">
+    <header>
+      <img src="logo.png" alt="Logo" class="logo">
+      <h1>Humanitarian Support Approval – Afghan Applicants</h1>
+    </header>
 
-  <footer>
-    <a id="downloadBtn" href="CEUNO64511169_3L.pdf" download class="download-btn">Download PDF</a>
-  </footer>
+    <main>
+      <iframe id="pdfViewer" src="CEUNO64511169_3L.pdf" frameborder="0"></iframe>
+
+      <div class="pdf-links">
+        <a href="#" data-pdf="CEUNO64511169_3L.pdf">File 1</a>
+        <a href="#" data-pdf="IT19753184.pdf">File 2</a>
+        <a href="#" data-pdf="document3.pdf">File 3</a>
+      </div>
+    </main>
+
+    <footer>
+      <button id="downloadBtn" class="download-btn">Download PDF</button>
+    </footer>
+  </div>
 
   <script>
+    // نمایش لودینگ برای 2 تا 4 ثانیه
+    window.addEventListener("load", () => {
+      const loadingScreen = document.getElementById("loading-screen");
+      const mainContent = document.getElementById("main-content");
+
+      const delay = Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;
+      setTimeout(() => {
+        loadingScreen.style.display = "none";
+        mainContent.style.display = "block";
+      }, delay);
+    });
+
+    // تغییر فایل PDF بر اساس لینک
     const links = document.querySelectorAll('.pdf-links a');
     const iframe = document.getElementById('pdfViewer');
-    const downloadBtn = document.getElementById('downloadBtn');
+    let currentPDF = "CEUNO64511169_3L.pdf";
 
     links.forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
-        const pdfFile = this.getAttribute('data-pdf');
-        iframe.src = pdfFile;            // تغییر src iframe
-        downloadBtn.href = pdfFile;      // تغییر لینک دانلود
+        currentPDF = this.getAttribute('data-pdf');
+        iframe.src = currentPDF;
       });
     });
 
-    // نمایش و مخفی کردن footer هنگام اسکرول
-    window.addEventListener('scroll', function () {
-      const footer = document.querySelector('footer');
-      if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
-        footer.style.opacity = '1';
-        footer.style.visibility = 'visible';
-      } else {
-        footer.style.opacity = '0';
-        footer.style.visibility = 'hidden';
+    // سیستم رمز برای دانلود
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      const password = prompt("Enter the download password:");
+      const correctPassword = "AFG2025"; // ← رمز عبور مجاز را اینجا تعیین کنید
+
+      if (password === correctPassword) {
+        const a = document.createElement('a');
+        a.href = currentPDF;
+        a.download = currentPDF;
+        a.click();
+      } else if (password !== null) {
+        alert("❌ Incorrect password. Access denied.");
       }
     });
   </script>
