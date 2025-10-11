@@ -14,13 +14,49 @@
   </header>
 
   <main>
-    <iframe src="CEU NO 64511169_3L.pdf" frameborder="0"></iframe>
+    <iframe id="pdf-frame" src="" frameborder="0"></iframe>
   </main>
 
   <footer>
-    <a href="document.pdf" download class="download-btn">Download PDF</a>
+    <a href="#" id="download-btn" class="download-btn">Download PDF</a>
   </footer>
+
 <script>
+  // رمز دانلود فایل
+  const correctPassword = "YourSecurePassword"; 
+
+  // گرفتن نام فایل از URL
+  const params = new URLSearchParams(window.location.search);
+  const fileName = params.get('file'); // مثال: ?file=example.pdf
+
+  const pdfFrame = document.getElementById('pdf-frame');
+  const downloadBtn = document.getElementById('download-btn');
+
+  if(fileName){
+    // مسیر فایل PDF روی GitHub
+    const fileURL = `https://raw.githubusercontent.com/YourUsername/YourRepo/main/pdfs/${fileName}`;
+    pdfFrame.src = fileURL;
+
+    downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pwd = prompt("To download the file, please enter the password.\nFor your password, contact Visa Pro International Services: admin@visaprointernational.com");
+      if(pwd === correctPassword){
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.download = fileName;
+        link.click();
+      } else if(pwd !== null){
+        alert("Incorrect password. Please contact admin@visaprointernational.com for assistance.");
+      }
+    });
+
+  } else {
+    pdfFrame.remove();
+    downloadBtn.remove();
+    document.body.insertAdjacentHTML('beforeend', '<p style="text-align:center; margin-top:20px;">No file specified. Please provide a valid PDF file link.</p>');
+  }
+
+  // Footer visibility on scroll
   window.addEventListener('scroll', function () {
     const footer = document.querySelector('footer');
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
@@ -35,4 +71,3 @@
 
 </body>
 </html>
-
