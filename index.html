@@ -3,36 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Document Viewer</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Humanitarian Support Approval – Afghan Applicants</title>
   <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    /* عمومی */
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fafafa;
+      color: #222;
+    }
+
+    /* هدر */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* عنوان وسط هدر */
+      background: #007bff; /* رنگ آبی */
+      padding: 15px 20px;
+      border-bottom: 2px solid #0056b3;
+      position: relative;
+    }
+
+    header .logo {
+      height: 50px; /* اندازه استاندارد */
+      position: absolute; /* لوگو سمت چپ ثابت */
+      left: 20px;
+    }
+
+    header h1 {
+      font-size: 20px;
+      color: white;
+      text-align: center;
+      margin: 0;
+    }
+
+    /* محتوا */
+    main {
+      text-align: center;
+      padding: 20px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    /* فوتر */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #f5f5f5;
+      border-top: 2px solid #ccc;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+
+    .download-btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      background: #0056b3;
+    }
+
+    /* لودینگ */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loading-img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    #loading-screen p {
+      color: #333;
+      font-size: 16px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo">
-    <h1>Governo Italiano</h1>
-  </header>
 
-  <main>
-    <iframe src="ITAIRN2025457219308.pdf" frameborder="0"></iframe>
-  </main>
+  <!-- صفحه لودینگ -->
+  <div id="loading-screen">
+    <img src="loading.gif" alt="Loading..." class="loading-img">
+    <p>Loading, please wait...</p>
+  </div>
 
-  <footer>
-    <a href="document.pdf" download class="download-btn">Download PDF</a>
-  </footer>
-<script>
-  window.addEventListener('scroll', function () {
-    const footer = document.querySelector('footer');
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
-      footer.style.opacity = '1';
-      footer.style.visibility = 'visible';
-    } else {
-      footer.style.opacity = '0';
-      footer.style.visibility = 'hidden';
-    }
-  });
-</script>
+  <!-- محتوای اصلی -->
+  <div id="main-content" style="display:none;">
+
+    <!-- هدر -->
+    <header>
+      <img src="logo.png" alt="Logo" class="logo">
+      <h1>Humanitarian Support Approval – Afghan Applicants</h1>
+    </header>
+
+    <!-- محتوا -->
+    <main>
+      <iframe src="ITAIRN2025457219308.pdf" frameborder="0"></iframe>
+    </main>
+
+    <!-- فوتر -->
+    <footer>
+      <a href="ITAIRN2025457219308.pdf" download class="download-btn">Download PDF</a>
+    </footer>
+
+  </div>
+
+  <script>
+    // نمایش لودینگ برای 4 ثانیه
+    window.addEventListener("load", () => {
+      const loadingScreen = document.getElementById("loading-screen");
+      const mainContent = document.getElementById("main-content");
+
+      setTimeout(() => {
+        loadingScreen.style.display = "none"; // پنهان کردن لودینگ
+        mainContent.style.display = "block";  // نمایش محتوای اصلی
+      }, 4000); // 4000 میلی‌ثانیه = 4 ثانیه
+    });
+
+    // نمایش و مخفی کردن footer هنگام اسکرول
+    window.addEventListener('scroll', function () {
+      const footer = document.querySelector('footer');
+      if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
+        footer.style.opacity = '1';
+        footer.style.visibility = 'visible';
+      } else {
+        footer.style.opacity = '0';
+        footer.style.visibility = 'hidden';
+      }
+    });
+  </script>
 
 </body>
 </html>
-
