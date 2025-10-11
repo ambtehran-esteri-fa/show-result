@@ -1,36 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secure PDF Viewer</title>
-<link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="logo.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ورود کاربر — نمایش نتیجه</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <img src="logo.png" alt="Logo">
-  <h1>Governo Italiano</h1>
-</header>
+  <div class="container">
+    <header>
+      <h1>سامانه مشاهده نتایج</h1>
+    </header>
 
-<main>
-  <div class="file-selector">
-    <label for="pdf-select">Select a PDF:</label>
-    <select id="pdf-select">
-      <option value="CEUNO64511169_3L.pdf">CEUNO64511169_3L.pdf</option>
-      <option value="SAIDY.PDF">SAIDY.PDF</option>
-      <option value="example3.pdf">Example3.pdf</option>
-    </select>
+    <!-- Login view -->
+    <main id="login-view">
+      <form id="login-form" class="card">
+        <h2>ورود</h2>
+        <label>نام کاربری
+          <input id="username" required />
+        </label>
+        <label>رمز عبور
+          <input id="password" type="password" required />
+        </label>
+        <button type="submit">ورود</button>
+        <p id="login-error" class="error"></p>
+      </form>
+
+      <p class="small">اگر چند کاربر دارید، اطلاعات آنها باید در فایل <code>data.js</code> قرار داشته باشد.</p>
+    </main>
+
+    <!-- Dashboard view (hidden until login) -->
+    <section id="dashboard-view" class="hidden">
+      <div class="card">
+        <div class="topbar">
+          <div>
+            <strong id="user-display"></strong>
+            <div id="ceu-display" class="small"></div>
+          </div>
+          <div>
+            <button id="logout-btn" class="small-btn">خروج</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="view-final" class="primary">نتیجه نهایی</button>
+        </div>
+
+        <div id="pdf-area" class="hidden">
+          <h3>نمایش فایل نتیجه</h3>
+          <div class="pdf-wrapper">
+            <iframe id="pdf-frame" src="" frameborder="0"></iframe>
+          </div>
+
+          <div class="download-section">
+            <label>برای دانلود، رمز عبور را وارد کنید:
+              <input id="download-pass" type="password" />
+            </label>
+            <button id="download-btn">دانلود</button>
+            <p id="download-msg" class="error"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <small>نسخه آزمایشی — امنیت فایل‌ها در نسخه کلاینت محدود است.</small>
+    </footer>
   </div>
 
-  <iframe id="pdf-frame" src="" frameborder="0"></iframe>
-</main>
-
-<footer>
-  <button id="download-btn" class="download-btn">Download PDF</button>
-</footer>
-
-<script src="script.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
