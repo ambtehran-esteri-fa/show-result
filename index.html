@@ -3,89 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <title>Humanitarian Support Approval – Afghan Applicants</title>
+  <title>Document Viewer</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-  <div id="loading-overlay" class="hidden">
-    <div class="loading-spinner">
-      <img src="loading.gif" alt="Loading..." id="loading-gif">
-    </div>
-  </div>
-  <!-- صفحه لودینگ -->
-  <div id="loading-screen">
-    <img src="loading.gif" alt="Loading..." class="loading-img">
-    <p>Please wait, loading documents...</p>
-  </div>
+  <header>
+    <img src="logo.png" alt="Logo">
+    <h1>Governo Italiano</h1>
+  </header>
 
-  <!-- محتوای اصلی -->
-  <div id="main-content" style="display:none;">
-    <header>
-      <img src="logo.png" alt="Logo" class="logo">
-      <h1>Humanitarian Support Approval – Afghan Applicants</h1>
-    </header>
+  <main>
+    <iframe src="CEU NO 64511169_3L.pdf" frameborder="0"></iframe>
+  </main>
 
-    <main>
-      <iframe id="pdfViewer" src="CEUNO64511169_3L.pdf" frameborder="0"></iframe>
+  <footer>
+    <a href="document.pdf" download class="download-btn">Download PDF</a>
+  </footer>
+<script>
+  window.addEventListener('scroll', function () {
+    const footer = document.querySelector('footer');
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
+      footer.style.opacity = '1';
+      footer.style.visibility = 'visible';
+    } else {
+      footer.style.opacity = '0';
+      footer.style.visibility = 'hidden';
+    }
+  });
+</script>
 
-      <div class="pdf-links">
-        <a href="#" data-pdf="CEUNO64511169_3L.pdf">File 1</a>
-        <a href="#" data-pdf="IT19753184.pdf">File 2</a>
-        <a href="#" data-pdf="ITAIRN2025457219308.pdf">File 3</a>
-      </div>
-    </main>
-
-    <footer>
-      <button id="downloadBtn" class="download-btn">Download PDF</button>
-    </footer>
-  </div>
-
-<body>
-
-  <!-- صفحه لودینگ -->
-  <div id="loading-screen">
-    <img src="loading.gif" alt="Loading..." class="loading-img">
-    <p>Loading, please wait...</p>
-  </div>
-
-  <!-- محتوای اصلی -->
-  <div id="main-content" style="display:none;">
-    <header>
-      <img src="logo.png" alt="Logo" class="logo">
-      <h1>Humanitarian Support Approval – Afghan Applicants</h1>
-    </header>
-
-    <main>
-      <iframe id="pdfViewer" src="CEUNO64511169_3L.pdf" frameborder="0"></iframe>
-
-      <div class="pdf-links">
-        <a href="#" data-pdf="CEUNO64511169_3L.pdf">File 1</a>
-        <a href="#" data-pdf="IT19753184.pdf">File 2</a>
-      </div>
-    </main>
-
-    <footer>
-      <button id="downloadBtn" class="download-btn">Download PDF</button>
-    </footer>
-  </div>
-
-  <script>
-    // نمایش لودینگ برای 2 تا 4 ثانیه در وسط صفحه
-    window.addEventListener("load", () => {
-      const loadingScreen = document.getElementById("loading-screen");
-      const mainContent = document.getElementById("main-content");
-
-      const delay = Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000; // 2 تا 4 ثانیه
-      setTimeout(() => {
-        loadingScreen.style.display = "none"; // پنهان کردن لودینگ
-        mainContent.style.display = "block";  // نمایش محتوای اصلی
-      }, delay);
-    });
-  </script>
 </body>
-
-
-
-
+</html>
